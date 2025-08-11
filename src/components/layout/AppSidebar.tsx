@@ -11,7 +11,8 @@ import {
   Presentation,
   UserCheck,
   FileSearch,
-  Plus
+  Plus,
+  MessageSquare
 } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth, UserRole } from '@/contexts/AuthContext';
@@ -37,15 +38,19 @@ interface NavigationItem {
 const navigationItems: NavigationItem[] = [
   // Common
   { title: 'Dashboard', url: '/dashboard', icon: Home, roles: ['ADMIN', 'DOCEN', 'ALUMN'] },
+  { title: 'Mensajes', url: '/mensajes', icon: MessageSquare, roles: ['ADMIN', 'DOCEN', 'ALUMN'] },
   
-  // Admin routes
+  // Admin routes  
   { title: 'Gestionar Alumnos', url: '/gestion-alumnos', icon: Users, roles: ['ADMIN'] },
   { title: 'Gestionar Docentes', url: '/gestion-docentes', icon: UserCheck, roles: ['ADMIN'] },
-  { title: 'Reportes Financieros', url: '/reportes-financieros', icon: BarChart3, roles: ['ADMIN'] },
+  { title: 'Materias', url: '/materias', icon: BookOpen, roles: ['ADMIN'] },
+  { title: 'Biblioteca', url: '/biblioteca', icon: FileSearch, roles: ['ADMIN'] },
+  { title: 'Análisis', url: '/analytics', icon: BarChart3, roles: ['ADMIN'] },
   
   // Teacher routes
   { title: 'Portal del Docente', url: '/portal-docente', icon: Presentation, roles: ['DOCEN'] },
   { title: 'Mis Clases', url: '/mis-clases', icon: BookOpen, roles: ['DOCEN'] },
+  { title: 'Asistencia', url: '/asistencia', icon: UserCheck, roles: ['DOCEN'] },
   
   // Student routes
   { title: 'Mi Horario', url: '/horario', icon: Calendar, roles: ['ALUMN'] },
