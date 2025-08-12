@@ -54,7 +54,7 @@ export default function Teachers() {
   const [statusFilter, setStatusFilter] = useState<'ALL' | 'ACTIVO' | 'INACTIVO'>('ALL');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editing, setEditing] = useState<Teacher | null>(null);
-  const [form, setForm] = useState({ code: '', name: '', email: '', department: '', status: 'ACTIVO' as const });
+  const [form, setForm] = useState<{ code: string; name: string; email: string; department: string; status: 'ACTIVO' | 'INACTIVO'; }>({ code: '', name: '', email: '', department: '', status: 'ACTIVO' });
 
   const filtered = useMemo(() => {
     return teachers.filter(t => {
