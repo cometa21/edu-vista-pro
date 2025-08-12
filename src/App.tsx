@@ -18,6 +18,27 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
+// Feature Pages
+import Subjects from "./pages/academic/Subjects";
+import Attendance from "./pages/academic/Attendance";
+import Library from "./pages/administrative/Library";
+import Messages from "./pages/communication/Messages";
+import Analytics from "./pages/reports/Analytics";
+
+// Admin
+import Students from "./pages/administrative/Students";
+import Teachers from "./pages/administrative/Teachers";
+
+// Teacher
+import TeacherPortal from "./pages/teacher/TeacherPortal";
+import MyClasses from "./pages/teacher/MyClasses";
+
+// Student
+import Schedule from "./pages/student/Schedule";
+import Payments from "./pages/student/Payments";
+import Grades from "./pages/student/Grades";
+import MyDocuments from "./pages/student/MyDocuments";
+import RequestDocument from "./pages/student/RequestDocument";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -46,16 +67,25 @@ const App = () => (
                 } 
               />
 
-              {/* Admin Routes */}
+              {/* Common Modules */}
+              <Route 
+                path="/mensajes" 
+                element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Messages />
+                    </AppLayout>
+                  </ProtectedRoute>
+                } 
+              />
+
+              {/* Admin Modules */}
               <Route 
                 path="/gestion-alumnos" 
                 element={
                   <ProtectedRoute allowedRoles={['ADMIN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Gestión de Alumnos</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <Students />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
@@ -65,10 +95,37 @@ const App = () => (
                 element={
                   <ProtectedRoute allowedRoles={['ADMIN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Gestión de Docentes</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <Teachers />
+                    </AppLayout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/materias" 
+                element={
+                  <ProtectedRoute allowedRoles={['ADMIN']}>
+                    <AppLayout>
+                      <Subjects />
+                    </AppLayout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/biblioteca" 
+                element={
+                  <ProtectedRoute allowedRoles={['ADMIN']}>
+                    <AppLayout>
+                      <Library />
+                    </AppLayout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/analytics" 
+                element={
+                  <ProtectedRoute allowedRoles={['ADMIN']}>
+                    <AppLayout>
+                      <Analytics />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
@@ -78,25 +135,19 @@ const App = () => (
                 element={
                   <ProtectedRoute allowedRoles={['ADMIN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Reportes Financieros</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <Analytics />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
               />
 
-              {/* Teacher Routes */}
+              {/* Teacher Modules */}
               <Route 
                 path="/portal-docente" 
                 element={
                   <ProtectedRoute allowedRoles={['DOCEN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Portal del Docente</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <TeacherPortal />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
@@ -106,25 +157,29 @@ const App = () => (
                 element={
                   <ProtectedRoute allowedRoles={['DOCEN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Mis Clases</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <MyClasses />
+                    </AppLayout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/asistencia" 
+                element={
+                  <ProtectedRoute allowedRoles={['DOCEN']}>
+                    <AppLayout>
+                      <Attendance />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
               />
 
-              {/* Student Routes */}
+              {/* Student Modules */}
               <Route 
                 path="/horario" 
                 element={
                   <ProtectedRoute allowedRoles={['ALUMN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Mi Horario</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <Schedule />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
@@ -134,10 +189,7 @@ const App = () => (
                 element={
                   <ProtectedRoute allowedRoles={['ALUMN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Mis Pagos</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <Payments />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
@@ -147,10 +199,7 @@ const App = () => (
                 element={
                   <ProtectedRoute allowedRoles={['ALUMN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Mis Calificaciones</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <Grades />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
@@ -160,10 +209,7 @@ const App = () => (
                 element={
                   <ProtectedRoute allowedRoles={['ALUMN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Mis Documentos</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <MyDocuments />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
@@ -173,10 +219,7 @@ const App = () => (
                 element={
                   <ProtectedRoute allowedRoles={['ALUMN']}>
                     <AppLayout>
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold">Solicitar Documentos</h1>
-                        <p className="text-muted-foreground">Funcionalidad en desarrollo</p>
-                      </div>
+                      <RequestDocument />
                     </AppLayout>
                   </ProtectedRoute>
                 } 
